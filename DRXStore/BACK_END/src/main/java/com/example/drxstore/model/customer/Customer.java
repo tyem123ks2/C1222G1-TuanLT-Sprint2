@@ -1,9 +1,8 @@
 package com.example.drxstore.model.customer;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.example.drxstore.model.AccountUser;
+
+import javax.persistence.*;
 
 @Entity
 public class Customer {
@@ -18,6 +17,10 @@ public class Customer {
     private String email;
     private String idCard;
     private String imgCustomer;
+
+    @OneToOne
+    @JoinColumn(columnDefinition = "id_account")
+    private AccountUser accountUser;
 
     public Customer() {
     }
