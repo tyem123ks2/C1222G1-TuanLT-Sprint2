@@ -1,25 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import {QuantityProvider} from "./components/ValueIconCartContext";
+import {Route, Routes} from "react-router";
+import React from "react";
+import Header from "./components/common/header/Header";
+import Login from "./components/pages/Login";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <QuantityProvider>
+            <Routes>
+                <Route path="/" element={<Header/>}/>
+                {/* LOGIN_REGISTER */}
+                <Route path="/login" element={<Login/>}/>
+            </Routes>
+        </QuantityProvider>
+    );
 }
 
 export default App;
