@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * @author ChinhLV
+ * @author TuanLT
  * Configure spring security
  */
 @Configuration
@@ -58,8 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/public/**","/api/user/ticket/create/**").permitAll()
-                .antMatchers("/api/user/**").hasAnyAuthority("USER","EMPLOYEE", "ADMIN")
-                .antMatchers("/api/employee/**").hasAnyAuthority("EMPLOYEE", "ADMIN")
+                .antMatchers("/api/user/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/api/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()

@@ -18,7 +18,7 @@ export const handleCallApiLogin = async (value) => {
 
 
 /**
- * @author ChinhLV
+ * @author TuanLT
  * @param {*} value
  * @since 28/05/2023
  * @returns giá trị của đối tượng bao gồm các thông tin: message đã tạo thành công hay chưa

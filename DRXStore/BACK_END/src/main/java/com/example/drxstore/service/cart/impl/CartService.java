@@ -27,7 +27,7 @@ public class CartService implements ICartService {
 
     @Override
     public Cart existCart(int idCustomer, int idProduct) {
-        return cartRepository.findCartByCustomer_IdAndAppleVariant_Id(idCustomer, idProduct);
+        return cartRepository.findCartByCustomer_IdAndIPhoneDetail_Id(idCustomer, idProduct);
     }
 
     @Override

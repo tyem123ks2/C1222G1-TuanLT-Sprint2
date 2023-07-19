@@ -1,7 +1,7 @@
 package com.example.drxstore.model.order;
 
 import com.example.drxstore.model.customer.Customer;
-import com.example.drxstore.model.product.iPhone.AppleVariant;
+import com.example.drxstore.model.product.iPhone.IPhoneDetail;
 
 import javax.persistence.*;
 
@@ -16,7 +16,7 @@ public class OrderDetail {
     private Integer quantityOrder;
     @ManyToOne
     @JoinColumn(columnDefinition = "id_apple_variant")
-    private AppleVariant appleVariant;
+    private IPhoneDetail IPhoneDetail;
     @ManyToOne
     @JoinColumn(columnDefinition = "id_order")
     private Order order;
@@ -43,12 +43,12 @@ public class OrderDetail {
         this.quantityOrder = quantityOrder;
     }
 
-    public AppleVariant getAppleVariant() {
-        return appleVariant;
+    public IPhoneDetail getAppleVariant() {
+        return IPhoneDetail;
     }
 
-    public void setAppleVariant(AppleVariant appleVariant) {
-        this.appleVariant = appleVariant;
+    public void setAppleVariant(IPhoneDetail IPhoneDetail) {
+        this.IPhoneDetail = IPhoneDetail;
     }
 
     public Order getOrder() {

@@ -81,6 +81,14 @@ public class Customer {
         this.email = email;
     }
 
+    public AccountUser getAccountUser() {
+        return accountUser;
+    }
+
+    public void setAccountUser(AccountUser accountUser) {
+        this.accountUser = accountUser;
+    }
+
     public String getIdCard() {
         return idCard;
     }

@@ -1,13 +1,22 @@
-import React, {useState} from "react";
+import {LoginSocialFacebook} from "reactjs-social-login";
+import {FacebookLoginButton} from "react-social-login-buttons";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
-import {ToastContainer, toast} from "react-toastify";
-import {handleCallApiLogin, handleCallApiToCreateAccountFb} from "../../service/LoginService";
-import {useDispatch} from "react-redux";
+import {
+    handleCallApiLogin,
+    handleCallApiToCreateAccountFb,
+} from "../../service/LoginService";
+import React, {useState} from "react";
 import {useNavigate} from "react-router";
+import {Link} from "react-router-dom";
+import {ToastContainer, toast} from "react-toastify";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import {useDispatch} from "react-redux";
+import "./Login.css"
 import {receiveAccount} from "../../redux/action";
-import "./index.css"
-
+import Header from "../common/header/Header";
+import Footer from "../common/footer/Footer";
 
 const Login = () => {
     const [failedAccount, setFailedAccount] = useState(null);
@@ -36,157 +45,197 @@ const Login = () => {
                 console.log(e);
             });
     };
+
     return (
         <>
-            <Formik
-                initialValues={{
-                    username: "",
-                    password: "",
-                }}
-                validationSchema={Yup.object({
-                    username: Yup.string()
-                        .required("Tên đăng nhập bắt buộc phải nhập.")
-                        .test(
-                            "Tên đăng nhập bắt buộc từ 6-30 ký tự.",
-                            "Tên đăng nhập bắt buộc từ 6-30 ký tự.",
-                            function (value) {
-                                return value.length >= 6 && value.length <= 30;
-                            }
-                        ),
-                    password: Yup.string()
-                        .required("Mật khẩu bắt buộc phải nhập.")
-                        .test(
-                            "Mật khẩu bắt buộc từ 6-30 ký tự.",
-                            "Mật khẩu bắt buộc từ 6-30 ký tự.",
-                            function (value) {
-                                return value.length >= 6 && value.length <= 30;
-                            }
-                        ),
-                })}
-                onSubmit={(values) => {
-                    handleCallApiLogin(values)
-                        .then((e) => {
-                            console.log(e);
-                            setFailedAccount(null);
-                            localStorage.setItem("token", e.token);
-                            localStorage.setItem("username", e.username);
-                            localStorage.setItem("account", JSON.stringify(e));
-                            dispatch(receiveAccount(e));
-                            window.location.href = "/";
-                        })
-                        .catch((e) => {
-                            setFailedAccount("Tên đăng nhập hoặc mật khẩu không đúng.");
-                        });
-                }}>
-                <div className="container">
-                    <div className="item">
-                        <h2 className="logo">Welcome to DRX-Store!</h2>
-                        <div className="text-item">
-                            <img src="../../public/DRAGONX_LOGO.png" height={257} width={257}/>
-                            <p>
-                                Please login to DRXStore to order and receive offers from the store!
-                            </p>
-                            <div className="social-icon">
-                                <a href="#">
-                                    <i className="bx bxl-facebook"/>
-                                </a>
-                                <a href="#">
-                                    <i className="bx bxl-twitter"/>
-                                </a>
-                                <a href="#">
-                                    <i className="bx bxl-youtube"/>
-                                </a>
-                                <a href="#">
-                                    <i className="bx bxl-instagram"/>
-                                </a>
-                                <a href="#">
-                                    <i className="bx bxl-linkedin"/>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="login-section">
-                        <div className="form-box login">
-                            <Form action="">
-                                <h2>Sign In</h2>
-                                <div className="input-box">
-                                    <span className="icon">
-                                    <i className="bx bxs-envelope"/>
-                                    </span>
-                                    <input type="password" style={{color: "white"}} required=""/>
-                                    <label htmlFor="username">Username</label>
-                                </div>
-                                <div className="input-box">
-                                      <span className="icon">
-                                        <i className="bx bxs-lock-alt"/>
-                                      </span>
-                                    <input type="password" style={{color: "white"}} required=""/>
-                                    <label htmlFor="password">Password</label>
-                                </div>
-                                <div className="remember-password">
-                                    <label htmlFor="">
-                                        <input type="checkbox"/>
-                                        Remember Me
-                                    </label>
-                                    <a href="#">Forget Password</a>
-                                </div>
-                                <button type="submit"
-                                        className="btn">Login</button>
-                                <div className="create-account">
-                                    <p>
-                                        Create A New Account?{" "}
-                                        <a href="#" className="register-link">
-                                            Sign Up
-                                        </a>
-                                    </p>
-                                </div>
-                            </Form>
-                        </div>
-                        <div className="form-box register">
-                            <form action="">
-                                <h2>Sign Up</h2>
-                                <div className="input-box">
-          <span className="icon">
-            <i className="bx bxs-user"/>
-          </span>
-                                    <input type="text" required=""/>
-                                    <label>Username</label>
-                                </div>
-                                <div className="input-box">
-          <span className="icon">
-            <i className="bx bxs-envelope"/>
-          </span>
-                                    <input type="email" required=""/>
-                                    <label>Email</label>
-                                </div>
-                                <div className="input-box">
-          <span className="icon">
-            <i className="bx bxs-lock-alt"/>
-          </span>
-                                    <input type="password" required=""/>
-                                    <label>Password</label>
-                                </div>
-                                <div className="remember-password">
-                                    <label htmlFor="">
-                                        <input type="checkbox"/>I agree with this statment
-                                    </label>
-                                </div>
-                                <button className="btn">Register</button>
-                                <div className="create-account">
-                                    <p>
-                                        Already Have An Account?{" "}
-                                        <a href="#" className="login-link">
-                                            Sign In
-                                        </a>
-                                    </p>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+            <Header/>
+            <div className="d-flex justify-content-center">
+                <div className="login-container container d-flex justify-content-center align-items-center flex-column">
+                    <Formik
+                        initialValues={{
+                            username: "",
+                            password: "",
+                        }}
+                        validationSchema={Yup.object({
+                            username: Yup.string()
+                                .required("Tên đăng nhập bắt buộc phải nhập.")
+                                .test(
+                                    "Tên đăng nhập bắt buộc từ 6-30 ký tự.",
+                                    "Tên đăng nhập bắt buộc từ 6-30 ký tự.",
+                                    function (value) {
+                                        return value.length >= 6 && value.length <= 30;
+                                    }
+                                ),
+                            password: Yup.string()
+                                .required("Mật khẩu bắt buộc phải nhập.")
+                                .test(
+                                    "Mật khẩu bắt buộc từ 6-30 ký tự.",
+                                    "Mật khẩu bắt buộc từ 6-30 ký tự.",
+                                    function (value) {
+                                        return value.length >= 6 && value.length <= 30;
+                                    }
+                                ),
+                        })}
+                        onSubmit={(values) => {
+                            handleCallApiLogin(values)
+                                .then((e) => {
+                                    console.log(e);
+                                    setFailedAccount(null);
+                                    localStorage.setItem("token", e.token);
+                                    localStorage.setItem("username", e.username);
+                                    localStorage.setItem("account", JSON.stringify(e));
+                                    dispatch(receiveAccount(e));
+                                    window.location.href = "/";
+                                })
+                                .catch((e) => {
+                                    setFailedAccount("Tên đăng nhập hoặc mật khẩu không đúng.");
+                                });
+                        }}
+                    >
+                        <Form>
+                            <p className="title-login text-center mb-3">Đăng nhập vào DRX Store</p>
+                            <h6 className="text-center mb-3">Nếu chưa có tài khoản, vui lòng đăng kí tại đây</h6>
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td colSpan={2} className="modify-title"
+                                        Vui long đăng nhập để được nhận nhiều ưu đãi
+                                    />
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label htmlFor="username">Tên đăng nhập:</label>
+                                    </td>
+                                    <td>
+                                        <Field
+                                            type="text"
+                                            name="username"
+                                            id="username"
+                                            placeholder="Nhập tên đăng nhập"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        <ErrorMessage
+                                            name="username"
+                                            className="error-mess m-0"
+                                            component={"p"}
+                                        />
+                                        {failedAccount && (
+                                            <p className="error-mess m-0">{failedAccount}</p>
+                                        )}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label htmlFor="password">Mật khẩu:</label>
+                                    </td>
+                                    <td>
+                                        <Field
+                                            type="password"
+                                            autoComplete="on"
+                                            name="password"
+                                            id="password"
+                                            placeholder="Mật khẩu"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        <ErrorMessage
+                                            name="password"
+                                            className="error-mess m-0"
+                                            component={"p"}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td className="other-login">
+                                        <Link
+                                            to={"/confirm-email"}
+                                            className="float-end text-decoration-none"
+                                        >
+                                            Quên mật khẩu?
+                                        </Link>
+                                        <Link
+                                            to="/register"
+                                            className="float-end text-decoration-none"
+                                        >
+                                            Đăng kí
+                                        </Link>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td className="other-login">
+                                        <button
+                                            type="submit"
+                                            className="login mt-3 w-100 text-center fw-bold"
+                                        >
+                                            ĐĂNG NHẬP
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        <LoginSocialFacebook
+                                            appId="257872636750784"
+                                            onResolve={(resolve) => {
+                                                console.log(resolve.data);
+                                                setAccountFacebook({email: resolve.data.email});
+                                                handleShow();
+                                            }}
+                                            onReject={(reject) => console.log(reject)}
+                                        >
+                                            <FacebookLoginButton
+                                                className="login login-facebook w-100 text-center fw-bold d-flex justify-content-center mt-1"/>
+                                        </LoginSocialFacebook>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </Form>
+                    </Formik>
+                    <ToastContainer/>
+                    {accountFacebook && (
+                        <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title style={{fontSize: "14px!important"}}>
+                                    Xác nhận tạo tài khoản
+                                </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                Chúng tôi sẽ tạo một tài khoản với tên đăng nhập là{" "}
+                                <span className="fw-bold">{accountFacebook.email}</span> và mật
+                                khẩu sẽ được gửi qua email của bạn. Vui lòng xác nhận để tiếp
+                                tục đăng nhập.
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Đóng
+                                </Button>
+                                <Button
+                                    variant="warning"
+                                    onClick={() => {
+                                        handleClose();
+                                        handleCreateAccountByFacebook();
+                                    }}
+                                >
+                                    Xác nhận
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+                    )}
                 </div>
-            </Formik>
+            </div>
+            <Footer />
         </>
-    )
+    );
 }
 
 export default Login;

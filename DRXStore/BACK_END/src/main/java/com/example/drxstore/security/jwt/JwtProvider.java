@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
- * @author ChinhLV
+ * @author TuanLT
  * @Param authentication
  * @return String createToken(Authentication authentication)
  * Phương thức sử dụng để tạo ra token dựa vào tham số đầu vào là 1 đối tượng của Authentication
@@ -28,7 +28,7 @@ import java.util.Date;
 @Component
 public class JwtProvider {
     private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
-    private String jwtSecret = "chinh_fpt";
+    private String jwtSecret = "tuan_skr";
     private long jwtExpiration = 80640000L;
     public String createToken(Authentication authentication) {
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();

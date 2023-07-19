@@ -1,10 +1,11 @@
 import React, {useContext} from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import { Link, useLocation } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
-import { Avatar } from "@mui/material";
+import {Link, useLocation} from "react-router-dom";
+import {FaSearch} from "react-icons/fa";
+import {Avatar} from "@mui/material";
 import {ValueIconCartContext} from "../../ValueIconCartContext";
 import "./header.css"
+
 const Header = () => {
     const username = localStorage.getItem("username");
     const account = JSON.parse(localStorage.getItem("account"));
@@ -21,11 +22,11 @@ const Header = () => {
     };
     return (
         <div className="container-fluid">
-            <div className="navbar">
+            <div className="navbar-header">
                 <div className="logo">
-                    <img src="../../public/DRAGONX_LOGO.png" height={65} width={80} />
+                    <img src="/DRAGONX_LOGO.png" height={65} width={80}/>
                     <img
-                        src="../../public/kisspng-macbook-pro-macbook-air-apple-autorized-5b16c01d05e875.1632999215282176290242.png"
+                        src="kisspng-macbook-pro-macbook-air-apple-autorized-5b16c01d05e875.1632999215282176290242.png"
                         height={32}
                         width={100}
                     />
@@ -33,7 +34,10 @@ const Header = () => {
                 <nav>
                     <ul>
                         <li>
-                            <a href="">iPhone</a>{" "}
+                            <a href="/">Trang chủ</a>{" "}
+                        </li>
+                        <li>
+                            <a href="/iphone">iPhone</a>{" "}
                         </li>
                         <li>
                             <a href="">iPad</a>{" "}
@@ -42,16 +46,13 @@ const Header = () => {
                             <a href="">Mac</a>{" "}
                         </li>
                         <li>
-                            <a href="">Accessories</a>{" "}
+                            <a href="">Phụ kiện</a>{" "}
                         </li>
                         <li>
-                            <a href="">Service</a>{" "}
+                            <a href="">Dịch vụ</a>{" "}
                         </li>
                         <li>
-                            <a href="">News</a>{" "}
-                        </li>
-                        <li>
-                            <a href="">Accessories</a>{" "}
+                            <a href="">Tin tức</a>{" "}
                         </li>
                         <li className="nav-item">
                             {username ? (
@@ -68,43 +69,101 @@ const Header = () => {
                                                 to="/admin/employee/list"
                                                 className="text-decoration-none"
                                             >
+                                                <Link
+                                                    to="/admin/employee/list"
+                                                    className="text-dark text-decoration-none"
+                                                >
+                                                    Quản lý nhân viên
+                                                </Link>
                                             </Dropdown.Item>
                                         ) : (
                                             ""
                                         )}
-                                        <Dropdown.Item className="text-decoration-none">
-                                            <Link
-                                                to={"/ticket-customer/history"}
-                                                className="text-dark text-decoration-none"
-                                            >
-                                                History
-                                            </Link>
-                                        </Dropdown.Item>
-                                        <Dropdown.Item className="text-decoration-none">
-                                            <Link
-                                                to={"/customer/change-information/"}
-                                                className="text-dark text-decoration-none"
-                                            >
-                                                Account Manage
-                                            </Link>
-                                        </Dropdown.Item>
+                                        {roles.includes("ADMIN") ? (
+                                            <Dropdown.Item className="text-decoration-none">
+                                                <Link
+                                                    to={"/admin/film/list"}
+                                                    className="text-dark text-decoration-none"
+                                                >
+                                                    Quản lý sản phẩm
+                                                </Link>
+                                            </Dropdown.Item>
+                                        ) : (
+                                            ""
+                                        )}
+                                        {roles.includes("ADMIN") ? (
+                                            <Dropdown.Item className="text-decoration-none">
+                                                <Link
+                                                    className="text-dark text-decoration-none"
+                                                    to={"/admin/customer/list"}
+                                                >
+                                                    Quản lý khách hàng
+                                                </Link>
+                                            </Dropdown.Item>
+                                        ) : (
+                                            ""
+                                        )}
+                                        {roles.includes("USER") ? (
+                                            <Dropdown.Item className="text-decoration-none">
+                                                <Link
+                                                    to={"/employee/ticket/list"}
+                                                    className="text-dark text-decoration-none"
+                                                >
+                                                    Quản lý tài khoản
+                                                </Link>
+                                            </Dropdown.Item>
+                                        ) : (
+                                            ""
+                                        )}
+                                        {roles.includes("USER") ? (
+                                            <Dropdown.Item className="text-decoration-none">
+                                                <Link
+                                                    to={"/employee/ticket/list"}
+                                                    className="text-dark text-decoration-none"
+                                                >
+                                                   Lịch sử mua hàng
+                                                </Link>
+                                            </Dropdown.Item>
+                                        ) : (
+                                            ""
+                                        )}
+                                        {roles.includes("ADMIN") ? (
+                                            <Dropdown.Item className="text-decoration-none">
+                                                <Link
+                                                    to={"/admin/statistic-film"}
+                                                    className="text-dark text-decoration-none"
+                                                >
+                                                    Thống kê
+                                                </Link>
+                                            </Dropdown.Item>
+                                        ) : (
+                                            ""
+                                        )}
+                                        {roles.includes("ADMIN")? (
+                                            <Dropdown.Divider/>
+                                        ) : (
+                                            ""
+                                        )}
                                         <Dropdown.Item
                                             onClick={handleLogout}
                                             className="text-decoration-none"
                                         >
-                                            Log out
+                                            Đăng xuất
                                         </Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             ) : (
-                                <Link to="/login" className="nav-link px-2 login-btn text-decoration-none" nav-link link-dark px-2>
+                                <Link to="/login" className="nav-link px-2 login-btn text-decoration-none" nav-link
+                                      link-dark px-2>
                                     My Account
                                 </Link>
                             )}
                         </li>
                     </ul>
                 </nav>
-                <img src="../../public/shopping-bag.png" height={32} width={32} />
+                <Link to="/cart">
+                    <img src="shopping-bag.png" height={32} width={32} alt="Shopping Bag"/>
+                </Link>
             </div>
         </div>
 

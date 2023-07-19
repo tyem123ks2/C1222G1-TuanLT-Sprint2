@@ -1,0 +1,31 @@
+.item-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.category-item {
+    flex-basis: calc(33.33% - 20px);
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.category-item img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.category-item h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.category-item p {
+    color: #777;
+    font-size: 14px;
+}
