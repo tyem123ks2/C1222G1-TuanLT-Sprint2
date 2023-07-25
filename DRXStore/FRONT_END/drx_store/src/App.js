@@ -10,6 +10,7 @@ import IPhoneList from "./components/IPhoneList";
 import IPhoneDetail from "./components/IPhoneDetail";
 import PhoneListAdmin from "./components/role_admin/PhoneListAdmin";
 import Error401 from "./components/Error401";
+import Cart from "./components/Cart";
 
 function App() {
     return (
@@ -26,6 +27,8 @@ function App() {
 
                 {/* ERROR 401 */}
                 <Route path="/error401" element={<Error401 />} />
+                {/* CART */}
+                <Route path="/cart" element={<Cart />} />
             </Routes>
         </QuantityProvider>
     );

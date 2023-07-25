@@ -8,7 +8,7 @@ import com.example.drxstore.service.cart.ICartService;
 import com.example.drxstore.service.customer.ICustomerService;
 import com.example.drxstore.service.order.IOrderService;
 import com.example.drxstore.service.orderDetail.IOrderDetailService;
-import com.example.drxstore.service.product.iphone.IIPhoneDetailService;
+import com.example.drxstore.service.product.iphone.IPhoneDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +21,7 @@ import java.util.List;
 @CrossOrigin("*")
 public class OrderDetailRestController {
     @Autowired
-    private IIPhoneDetailService iiPhoneDetailService;
+    private IPhoneDetailService iiPhoneDetailService;
     @Autowired
     private ICartService iCartService;
     @Autowired

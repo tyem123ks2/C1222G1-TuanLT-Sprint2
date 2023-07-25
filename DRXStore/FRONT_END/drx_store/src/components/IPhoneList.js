@@ -53,7 +53,7 @@ const IPhoneList = () => {
     return (
         <>
             <Header/>
-            <div className="container-fluid.all">
+            <div className="container-fluid">
                 <div
                     id="carouselExampleControlsNoTouching"
                     className="carousel slide"
@@ -147,7 +147,7 @@ const IPhoneList = () => {
                                             }}
                                             name="name"
                                             aria-describedby="helpId"
-                                            placeholder="Search by product..."
+                                            placeholder="Tìm theo tên..."
                                         />
                                         <button
                                             className="btn btn-outline-success"
@@ -210,7 +210,10 @@ const IPhoneList = () => {
                                             </div>
                                             <div className="iphone-info">
                                                 <h4>{product.name}</h4>
-                                                <h4>{product.price}</h4>
+                                                <h4>{product.price.toLocaleString("vi-VN", {
+                                                    style: "currency",
+                                                    currency: "VND",
+                                                })}</h4>
                                             </div>
                                             {/*<div className="btn">*/}
                                             {/*    <button type="button">Thêm vào giỏ</button>*/}

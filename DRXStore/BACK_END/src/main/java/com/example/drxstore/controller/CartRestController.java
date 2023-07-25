@@ -10,7 +10,7 @@ import com.example.drxstore.security.jwt.JwtTokenFilter;
 import com.example.drxstore.security.response.ResponseMessage;
 import com.example.drxstore.service.cart.ICartService;
 import com.example.drxstore.service.customer.ICustomerService;
-import com.example.drxstore.service.product.iphone.IIPhoneDetailService;
+import com.example.drxstore.service.product.iphone.IPhoneDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +31,7 @@ public class CartRestController {
     @Autowired
     private ICustomerService iCustomerService;
     @Autowired
-    private IIPhoneDetailService iiPhoneDetailService;
+    private IPhoneDetailService phoneDetailService;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("")
@@ -53,8 +53,8 @@ public class CartRestController {
         if (customer == null) {
             return new ResponseEntity<>(new ResponseMessage("Mã JWT không chính xác"), HttpStatus.BAD_REQUEST);
         }
-        Cart existCart = iCartService.existCart(customer.getId(), cartCreateDTO.getIPhoneDetail());
-        PhoneDetail phoneDetail = iiPhoneDetailService.findById(cartCreateDTO.getIPhoneDetail());
+        Cart existCart = iCartService.existCart(customer.getId(), cartCreateDTO.getPhoneDetail());
+        PhoneDetail phoneDetail = phoneDetailService.findById(cartCreateDTO.getPhoneDetail());
         if (existCart != null) {
             if (phoneDetail.getQuantity() > existCart.getQuantity()) {
                 existCart.setQuantity(existCart.getQuantity() + cartCreateDTO.getQuantity());

@@ -33,7 +33,7 @@ const Home = () => {
                                 <img
                                     src="https://shopdunk.com/images/uploaded/Home%20banner%20T7%202023/banner%20watch%20t7_Banner%20PC7.jpg"
                                     className="d-block w-100"
-                                    alt="..."
+                                        alt="..."
                                 />
                             </div>
                         </div>

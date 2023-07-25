@@ -1,9 +1,15 @@
 import Swal from "sweetalert2";
 import {useNavigate} from "react-router";
-import {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {ValueIconCartContext} from "./ValueIconCartContext";
-import {findCartByCustomerId, payment, updateCart} from "../service/CartService";
-
+import {findCartByCustomerId, payment, updateCart, deleteCart, deleteCart1} from "../service/CartService";
+import {PayPalButtons, PayPalScriptProvider} from "@paypal/react-paypal-js";
+import {findCustomer} from "../service/CustomerService";
+import {payment1} from "../service/PaymentService";
+import {Link} from 'react-router-dom';
+import Header from "./common/header/Header";
+import Footer from "./common/footer/Footer";
+import "./cart.css"
 
 const Cart = () => {
     const navigate = useNavigate();
@@ -14,7 +20,7 @@ const Cart = () => {
     const {setIconQuantity} = useContext(ValueIconCartContext)
     const [cart] = useState({
         quantity: 1,
-        figureProduct: ""
+        iPhoneDetail: ""
     })
     const findAllCart = async () => {
         try {
@@ -28,7 +34,7 @@ const Cart = () => {
     }
     const deleteCart = async (id) => {
         try {
-            await deleteCart(id, token);
+            await deleteCart1(id, token);
             Swal.fire({
                 title: 'Thông báo',
                 text: 'Xoá sản phẩm thành công!',
@@ -48,13 +54,13 @@ const Cart = () => {
     useEffect(() => {
         {
             username ? (async () => {
-                const result = await CustomerService.findCustomer(token);
+                const result = await findCustomer(token);
                 setCustomer(result);
             })() : setCustomer(null)
         }
     }, []);
     const totalPrice = carts.reduce((total, cart) => {
-        return total + cart?.figureProduct?.price * cart?.quantity;
+        return total + cart?.iPhoneDetail?.sellPrice * cart?.quantity;
     }, 0);
     const decreaseQuantity = async (cartIndex) => {
         const updatedCarts = [...carts];
@@ -65,7 +71,7 @@ const Cart = () => {
                 await updateCart({
                     ...cart,
                     quantity: updatedCarts[cartIndex].quantity,
-                    figureProduct: updatedCarts[cartIndex].figureProduct?.id
+                    iPhoneDetail: updatedCarts[cartIndex].iPhoneDetail?.id
                 }, token);
                 findAllCart();
             } catch (e) {
@@ -80,7 +86,7 @@ const Cart = () => {
         await updateCart({
             ...cart,
             quantity: updatedCarts[cartIndex].quantity,
-            figureProduct: updatedCarts[cartIndex].figureProduct?.id
+            iPhoneDetail: updatedCarts[cartIndex].iPhoneDetail?.id
         }, token);
         findAllCart();
     };
@@ -102,7 +108,7 @@ const Cart = () => {
                 await updateCart({
                     ...cart,
                     quantity: updatedCarts[cartIndex].quantity,
-                    figureProduct: updatedCarts[cartIndex].figureProduct?.id
+                    iPhoneDetail: updatedCarts[cartIndex].iPhoneDetail?.id
                 }, token);
                 findAllCart();
             }
@@ -115,17 +121,19 @@ const Cart = () => {
             totalPrice: totalPrice
         }
         try {
-            const result = await PaymentService.payment(payment, token);
-            localStorage.setItem("totalPrice" , totalPrice)
+            const result = await payment1(payment, token);
+            localStorage.setItem("totalPrice", totalPrice)
             window.location.href = result.url;
         } catch (e) {
             console.log(e);
         }
     }
+    console.log(carts)
     return (
         <>
+            <Header/>
             <div className="container cart-margin">
-                <div className=" ">
+                <div className="container-fluid">
                     <div className="row" style={{display: "flex"}}>
                         <div className="col-md-8">
                             <div className="title-cart">
@@ -147,24 +155,46 @@ const Cart = () => {
                                 </div>
                             ) : (
                                 <div className="row border-top border-bottom">
+                                    <div className="row main align-items-center">
+                                        <div className="col-2">
+                                            <a>Hình ảnh</a>
+                                        </div>
+                                        <div className="col">
+                                            <a>Tên sản phẩm</a>
+                                        </div>
+                                        <div className="col">
+                                            <a>Số lượng</a>
+                                        </div>
+                                        <div className="col">
+                                            <a>Giá bán</a>
+                                        </div>
+                                        <div className="col">
+                                           <a></a>
+                                        </div>
+                                    </div>
                                     {carts.map((cart, index) => (
                                         <div className="row main align-items-center" key={index}>
                                             <div className="col-2">
                                                 <img className="img-cart-hihi img-fluid"
-                                                     src={cart?.figureProduct?.imgFigure}/>
+                                                     src={cart?.iPhoneDetail?.imgIphone}/>
                                             </div>
                                             <div className="col">
-                                                <div className="row text-muted">{cart?.figureProduct?.name}</div>
+                                                <div className="row text-muted">
+                                                    <a>{cart?.iPhoneDetail?.name}</a>
+                                                </div>
                                             </div>
                                             <div className="col">
-                                                <a className="a-cart"
-                                                   onClick={() => decreaseQuantity(index)}>-</a>
-                                                <input type="text" onChange={(event) => handleInputChange(event, index)}
-                                                       className="input-c" value={cart.quantity}/>
+                                                <a className="a-cart" onClick={() => decreaseQuantity(index)}>-</a>
+                                                <input
+                                                    type="text"
+                                                    onChange={(event) => handleInputChange(event, index)}
+                                                    className="input-c"
+                                                    value={cart.quantity}
+                                                />
                                                 <a className="a-cart" onClick={() => increaseQuantity(index)}>+</a>
                                             </div>
                                             <div className="col">
-                                                {(cart.quantity * cart?.figureProduct?.price).toLocaleString("vi-VN", {
+                                                {(cart.quantity * cart?.iPhoneDetail?.sellPrice).toLocaleString("vi-VN", {
                                                     style: "currency",
                                                     currency: "VND",
                                                 })}
@@ -190,7 +220,7 @@ const Cart = () => {
                             )}
 
                             <div className="back-to-shop">
-                                <Link to="/home" className="a-cart">←</Link>
+                                <Link to="/" className="a-cart">←</Link>
                                 <span className="text-muted">Trang chủ</span>
                             </div>
                         </div>
@@ -237,12 +267,15 @@ const Cart = () => {
                                 />
                             </PayPalScriptProvider>
                             <div>
-                                <button type="button" className="btn btn-primary btn-sm" onClick={() => handleOnclickPayment(totalPrice)}>Thanh toán qua VNPay</button>
+                                <button type="button" className="btn btn-primary btn-sm"
+                                        onClick={() => handleOnclickPayment(totalPrice)}>Thanh toán qua VNPay
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }

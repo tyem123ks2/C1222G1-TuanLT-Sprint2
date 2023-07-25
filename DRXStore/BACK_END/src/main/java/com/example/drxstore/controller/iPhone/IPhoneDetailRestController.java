@@ -1,7 +1,7 @@
 package com.example.drxstore.controller.iPhone;
 
 import com.example.drxstore.model.product.iPhone.PhoneDetail;
-import com.example.drxstore.service.product.iphone.IIPhoneDetailService;
+import com.example.drxstore.service.product.iphone.IPhoneDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 public class IPhoneDetailRestController {
     @Autowired
-    private IIPhoneDetailService iPhoneDetailService;
+    private IPhoneDetailService iPhoneDetailService;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/public/iphone")
@@ -32,7 +32,7 @@ public class IPhoneDetailRestController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/detail/{id}")
+    @GetMapping("/public/iphone/detail/{id}")
     public ResponseEntity<?> findProductById(@PathVariable("id") Integer id) {
         PhoneDetail phoneDetail = iPhoneDetailService.findById(id);
         return new ResponseEntity<>(phoneDetail, HttpStatus.OK);

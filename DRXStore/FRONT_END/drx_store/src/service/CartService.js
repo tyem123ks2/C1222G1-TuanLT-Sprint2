@@ -43,7 +43,7 @@ const updateCart = async (cart, auth) => {
         })
     }
 }
-const deleteCart = async (id, auth) => {
+const deleteCart1 = async (id, auth) => {
     const headers = {Authorization: "Bearer " + auth}
     try {
         await axios.delete(`http://localhost:8080/api/user/cart/delete/` + id, {headers});
@@ -72,7 +72,7 @@ export {
     addCart,
     findCartByCustomerId,
     updateCart,
-    deleteCart,
+    deleteCart1,
     payment,
     historyShopping
 }

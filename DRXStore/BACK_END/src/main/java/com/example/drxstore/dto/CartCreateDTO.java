@@ -3,7 +3,7 @@ package com.example.drxstore.dto;
 public class CartCreateDTO {
     private Integer quantity;
     private boolean status = true;
-    private Integer IPhoneDetail;
+    private Integer phoneDetail;
 
     public CartCreateDTO() {
     }
@@ -24,11 +24,11 @@ public class CartCreateDTO {
         this.status = status;
     }
 
-    public Integer getIPhoneDetail() {
-        return IPhoneDetail;
+    public Integer getPhoneDetail() {
+        return phoneDetail;
     }
 
-    public void setIPhoneDetail(Integer IPhoneDetail) {
-        this.IPhoneDetail = IPhoneDetail;
+    public void setPhoneDetail(Integer phoneDetail) {
+        this.phoneDetail = phoneDetail;
     }
 }

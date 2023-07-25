@@ -24,7 +24,7 @@ const Header = () => {
         <div className="container-fluid">
             <div className="navbar-header">
                 <div className="logo">
-                    <img src="/DRAGONX_LOGO.png" height={65} width={80}/>
+                    <img src="/DragonXX.png" height={65} width={110}/>
                     <img
                         src="kisspng-macbook-pro-macbook-air-apple-autorized-5b16c01d05e875.1632999215282176290242.png"
                         height={32}

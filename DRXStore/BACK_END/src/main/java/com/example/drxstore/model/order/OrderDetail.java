@@ -15,7 +15,7 @@ public class OrderDetail {
     @Column(name = "quantity_order")
     private Integer quantityOrder;
     @ManyToOne
-    @JoinColumn(columnDefinition = "id_apple_variant")
+    @JoinColumn(columnDefinition = "phone_detail_id")
     private PhoneDetail phoneDetail;
     @ManyToOne
     @JoinColumn(columnDefinition = "id_order")

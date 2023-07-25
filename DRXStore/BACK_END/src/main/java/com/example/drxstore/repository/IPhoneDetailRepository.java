@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 
 @Repository
-public interface IIPhoneDetailRepository extends JpaRepository<PhoneDetail, Integer> {
+public interface IPhoneDetailRepository extends JpaRepository<PhoneDetail, Integer> {
     @Transactional
     @Query(value = "SELECT * FROM phone_detail WHERE (:name IS NULL OR phone_detail.name LIKE CONCAT('%', :name, '%'))", nativeQuery = true)
     Page<PhoneDetail> findAllIPhone(@Param("name") String name, Pageable pageable);
