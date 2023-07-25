@@ -6,7 +6,7 @@ import {
     handleCallApiLogin,
     handleCallApiToCreateAccountFb,
 } from "../../service/LoginService";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import {Link} from "react-router-dom";
 import {ToastContainer, toast} from "react-toastify";
@@ -45,6 +45,17 @@ const Login = () => {
                 console.log(e);
             });
     };
+
+    useEffect(() => {
+        // Kiểm tra nếu đã đăng nhập (ví dụ, token đã tồn tại trong localStorage), thực hiện chuyển hướng tới trang home
+        const token = localStorage.getItem("token");
+
+        // Nếu token đã tồn tại, thực hiện chuyển hướng tới trang home
+        if (token) {
+            navigate("/");
+            debugger
+        }
+    }, [navigate]);
 
     return (
         <>

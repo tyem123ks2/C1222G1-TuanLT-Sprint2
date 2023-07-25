@@ -4,17 +4,17 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class IPhoneColor {
+public class PhoneColor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String color;
 
-    @OneToMany(mappedBy = "iPhoneColor")
-    private Set<IPhoneDetail> IPhoneDetailSet;
+    @OneToMany(mappedBy = "phoneColor")
+    private Set<PhoneDetail> phoneDetailSet;
 
-    public IPhoneColor() {
+    public PhoneColor() {
     }
 
     public Long getId() {
@@ -33,12 +33,11 @@ public class IPhoneColor {
         this.color = color;
     }
 
-
-    public Set<IPhoneDetail> getAppleVariantSet() {
-        return IPhoneDetailSet;
+    public Set<PhoneDetail> getPhoneDetailSet() {
+        return phoneDetailSet;
     }
 
-    public void setAppleVariantSet(Set<IPhoneDetail> IPhoneDetailSet) {
-        this.IPhoneDetailSet = IPhoneDetailSet;
+    public void setPhoneDetailSet(Set<PhoneDetail> phoneDetailSet) {
+        this.phoneDetailSet = phoneDetailSet;
     }
 }

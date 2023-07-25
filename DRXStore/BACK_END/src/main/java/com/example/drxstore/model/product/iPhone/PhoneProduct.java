@@ -4,14 +4,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class IPhoneProduct {
+public class PhoneProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String model;
 
-    @OneToMany(mappedBy = "appleProduct", cascade = CascadeType.ALL)
-    private Set<IPhoneDetail> IPhoneDetailSet;
+    @OneToMany(mappedBy = "phoneProduct", cascade = CascadeType.ALL)
+    private Set<PhoneDetail> PhoneDetailSet;
 
     public Long getId() {
         return id;
@@ -29,13 +29,11 @@ public class IPhoneProduct {
         this.model = model;
     }
 
-    public Set<IPhoneDetail> getAppleVariantSet() {
-        return IPhoneDetailSet;
+    public Set<PhoneDetail> getPhoneDetailSet() {
+        return PhoneDetailSet;
     }
 
-    public void setAppleVariantSet(Set<IPhoneDetail> IPhoneDetailSet) {
-        this.IPhoneDetailSet = IPhoneDetailSet;
+    public void setPhoneDetailSet(Set<PhoneDetail> phoneDetailSet) {
+        PhoneDetailSet = phoneDetailSet;
     }
-
-
 }

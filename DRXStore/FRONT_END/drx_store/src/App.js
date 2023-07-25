@@ -7,6 +7,9 @@ import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 import ProductListUser from "./components/IPhoneList";
 import IPhoneList from "./components/IPhoneList";
+import IPhoneDetail from "./components/IPhoneDetail";
+import PhoneListAdmin from "./components/role_admin/PhoneListAdmin";
+import Error401 from "./components/Error401";
 
 function App() {
     return (
@@ -16,6 +19,13 @@ function App() {
                 {/* LOGIN_REGISTER */}
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/iphone" element={<IPhoneList />}/>
+                <Route path="/iphone/detail/:id" element={<IPhoneDetail/>}/>
+
+                {/* ADMIN_DISCOUNT */}
+                <Route path="/admin/iphone/list" element={<PhoneListAdmin />} />
+
+                {/* ERROR 401 */}
+                <Route path="/error401" element={<Error401 />} />
             </Routes>
         </QuantityProvider>
     );

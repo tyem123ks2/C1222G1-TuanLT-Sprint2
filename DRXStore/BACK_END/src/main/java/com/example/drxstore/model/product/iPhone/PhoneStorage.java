@@ -4,16 +4,16 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class IPhoneStorage {
+public class PhoneStorage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int storage;
 
-    @OneToMany(mappedBy = "iPhoneStorage")
-    private Set<IPhoneDetail> IPhoneDetailSet;
+    @OneToMany(mappedBy = "phoneStorage")
+    private Set<PhoneDetail> PhoneDetailSet;
 
-    public IPhoneStorage() {
+    public PhoneStorage() {
     }
 
     public Long getId() {
@@ -32,11 +32,11 @@ public class IPhoneStorage {
         this.storage = storage;
     }
 
-    public Set<IPhoneDetail> getAppleVariantSet() {
-        return IPhoneDetailSet;
+    public Set<PhoneDetail> getIPhoneDetailSet() {
+        return PhoneDetailSet;
     }
 
-    public void setAppleVariantSet(Set<IPhoneDetail> IPhoneDetailSet) {
-        this.IPhoneDetailSet = IPhoneDetailSet;
+    public void setIPhoneDetailSet(Set<PhoneDetail> PhoneDetailSet) {
+        this.PhoneDetailSet = PhoneDetailSet;
     }
 }

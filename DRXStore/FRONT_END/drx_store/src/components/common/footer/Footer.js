@@ -1,67 +1,46 @@
-import "./footer.css"
-
+import "./footer.css";
 const Footer = () => {
     return (
         <>
             <div className="container">
                 <footer className="py-5">
                     <div className="row">
-                        <div className="col-3">
+                        <div className="col-2">
                             <h5>Đa dạng thanh toán</h5>
                             <ul className="nav flex-column">
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        Chuyển khoản
+
                                     </a>
                                 </li>
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        Tiền mặt
+                                        Track Order
                                     </a>
                                 </li>
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        VNPAY
-                                    </a>
-                                </li>
-                                <li className="nav-item mb-2">
-                                    <a href="#" className="nav-link p-0 text-muted">
-                                        Thẻ ATM
+                                        Size Chart
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                        <div className="col-3">
+                        <div className="col-2">
                             <h5>Thông tin hữu ích</h5>
                             <ul className="nav flex-column">
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        Về chúng tôi
+                                        Safe Shopping
                                     </a>
                                 </li>
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        Chính sách bảo hành
+                                        Delivery &amp; Shipping
                                     </a>
                                 </li>
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        Chính sách đổi trả
-                                    </a>
-                                </li>
-                                <li className="nav-item mb-2">
-                                    <a href="#" className="nav-link p-0 text-muted">
-                                        Chính sách vận chuyển
-                                    </a>
-                                </li>
-                                <li className="nav-item mb-2">
-                                    <a href="#" className="nav-link p-0 text-muted">
-                                        Chính sách bảo mật
-                                    </a>
-                                </li>
-                                <li className="nav-item mb-2">
-                                    <a href="#" className="nav-link p-0 text-muted">
-                                        Chính sách thanh toán
+                                        90-Day Returns
                                     </a>
                                 </li>
                             </ul>
@@ -71,25 +50,25 @@ const Footer = () => {
                             <ul className="nav flex-column">
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        Facebook
+                                        My Account
                                     </a>
                                 </li>
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        Youtube
+                                        About Us
                                     </a>
                                 </li>
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        Tiktok
+                                        Affiliate Program
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                        <div className="col-3 offset-1">
+                        <div className="col-4 offset-1">
                             <form>
                                 <h5>Subscribe to our newsletter</h5>
-                                <p>Ấn đăng kí và theo dõi để nhận nhiều ưu đãi tại DRXStore</p>
+                                <p>Stay updated on sales, new items and more</p>
                                 <div className="d-flex w-100 gap-2">
                                     <label htmlFor="newsletter1" className="visually-hidden">
                                         Email address
@@ -98,7 +77,7 @@ const Footer = () => {
                                         id="newsletter1"
                                         type="text"
                                         className="form-control"
-                                        placeholder="Nhập email tại đây"
+                                        placeholder="Email address"
                                     />
                                     <button className="btn btn-primary" type="button">
                                         Subscribe
@@ -109,8 +88,9 @@ const Footer = () => {
                     </div>
                     <div className="d-flex justify-content-between py-4 my-4 border-top">
                         <p>
-                            © DRXStore 2023 - Địa chỉ: 45 Trần Cao Vân, Phường Láng Hạ, Quận Đống
-                            Đa, Hà Nội. Điện thoại: 1900633579
+                            © 2023, Fanatics, Inc. and/or its affiliated entities. All Rights
+                            Reserved. No portion of this site may be reproduced or duplicated
+                            without the express permission of Fanatics.
                         </p>
                         <ul className="list-unstyled d-flex">
                             <li className="ms-3">
@@ -138,9 +118,7 @@ const Footer = () => {
                     </div>
                 </footer>
             </div>
-
         </>
-    )
-}
-
+    );
+};
 export default Footer;

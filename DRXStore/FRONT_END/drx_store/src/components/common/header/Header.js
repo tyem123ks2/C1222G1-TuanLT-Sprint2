@@ -82,7 +82,7 @@ const Header = () => {
                                         {roles.includes("ADMIN") ? (
                                             <Dropdown.Item className="text-decoration-none">
                                                 <Link
-                                                    to={"/admin/film/list"}
+                                                    to={"/admin/iphone/list"}
                                                     className="text-dark text-decoration-none"
                                                 >
                                                     Quản lý sản phẩm

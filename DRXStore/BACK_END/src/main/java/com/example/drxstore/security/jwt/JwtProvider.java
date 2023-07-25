@@ -28,8 +28,8 @@ import java.util.Date;
 @Component
 public class JwtProvider {
     private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
-    private String jwtSecret = "tuan_skr";
-    private long jwtExpiration = 80640000L;
+    private String jwtSecret = "tuan_skr"; //Chữ kí (signature)
+    private long jwtExpiration = 80640000L; //Xét thời gian sống của token
     public String createToken(Authentication authentication) {
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
         return Jwts.builder().setSubject(userPrinciple.getUsername())
