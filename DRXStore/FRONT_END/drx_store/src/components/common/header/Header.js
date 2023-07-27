@@ -34,25 +34,25 @@ const Header = () => {
                 <nav>
                     <ul>
                         <li>
-                            <a href="/">Trang chủ</a>{" "}
+                            <Link to="/" className="" style={{color: "#d2d2d7"}}>Trang chủ</Link>
                         </li>
                         <li>
-                            <a href="/iphone">iPhone</a>{" "}
+                            <Link to="/iphone" className="" style={{color: "#d2d2d7"}}>iPhone</Link>
                         </li>
                         <li>
-                            <a href="">iPad</a>{" "}
+                            <Link to="/ipad" className="" style={{color: "#d2d2d7"}}>iPad</Link>
                         </li>
                         <li>
-                            <a href="">Mac</a>{" "}
+                            <Link to="/mac" className="" style={{color: "#d2d2d7"}}>Mac</Link>
                         </li>
                         <li>
-                            <a href="">Phụ kiện</a>{" "}
+                            <Link to="/" className="" style={{color: "#d2d2d7"}}>Phụ kiện</Link>
                         </li>
                         <li>
-                            <a href="">Dịch vụ</a>{" "}
+                            <Link to="/service" className="" style={{color: "#d2d2d7"}}>Dịch vụ</Link>
                         </li>
                         <li>
-                            <a href="">Tin tức</a>{" "}
+                            <Link to="/news" className="" style={{color: "#d2d2d7"}}>Tin tức</Link>
                         </li>
                         <li className="nav-item">
                             {username ? (
@@ -106,7 +106,7 @@ const Header = () => {
                                         {roles.includes("USER") ? (
                                             <Dropdown.Item className="text-decoration-none">
                                                 <Link
-                                                    to={"/employee/ticket/list"}
+                                                    to={"/information"}
                                                     className="text-dark text-decoration-none"
                                                 >
                                                     Quản lý tài khoản
@@ -118,7 +118,7 @@ const Header = () => {
                                         {roles.includes("USER") ? (
                                             <Dropdown.Item className="text-decoration-none">
                                                 <Link
-                                                    to={"/employee/ticket/list"}
+                                                    to={"/history"}
                                                     className="text-dark text-decoration-none"
                                                 >
                                                    Lịch sử mua hàng
@@ -153,9 +153,9 @@ const Header = () => {
                                     </Dropdown.Menu>
                                 </Dropdown>
                             ) : (
-                                <Link to="/login" className="nav-link px-2 login-btn text-decoration-none" nav-link
+                                <Link to="/login" style={{color: "Yellow"}} className="nav-link px-2 login-btn text-decoration-none" nav-link
                                       link-dark px-2>
-                                    My Account
+                                    Đăng nhập
                                 </Link>
                             )}
                         </li>

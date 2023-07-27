@@ -11,12 +11,12 @@
     margin-bottom: 5vh;
 }
 .summary{
-    max-height: 360px;
+    max-height: max-content;
     background-color: #ddd;
-    padding: 4vh;
+    padding: 0vh;
     color: rgb(65, 65, 65);
 }
-@media(max-width:767px){
+@media(max-width:780px){
     .summary{
         border-top-right-radius: unset;
         border-bottom-left-radius: 1rem;
@@ -40,7 +40,7 @@
     width: 100%;
 }
 .col-2, .col{
-    padding: 0 1vh;
+    padding: 0 0vh;
 }
 .a-cart{
     padding: 0 1vh;

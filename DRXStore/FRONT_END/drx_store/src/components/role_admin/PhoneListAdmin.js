@@ -77,8 +77,7 @@ const PhoneListAdmin = () => {
     return (
         phoneList && (
             <>
-                <Header/>
-                <div className="row mx-0" style={{margin: "150px 0"}}>
+                <div className="row mx-0" style={{margin: "20px 0"}}>
                     <div
                         className="container-fluid mx-auto my-5 col-10"
                         style={{
@@ -278,7 +277,7 @@ const PhoneListAdmin = () => {
                                                                             <img
                                                                                 src={phone.imgIphone}
                                                                                 alt="Hình ảnh iPhone"
-                                                                                style={{width: 70, height: 100}}
+                                                                                style={{width: 125, height: 125}}
                                                                             />
                                                                         </a>
                                                                     </div>
@@ -381,7 +380,6 @@ const PhoneListAdmin = () => {
                 {/*        findAll();*/}
                 {/*    }}*/}
                 {/*/>*/}
-                <Footer/>
             </>
         )
     );

@@ -92,7 +92,6 @@ const IPhoneDetail = () => {
 
     return (
         <>
-            < Header/>
             <div className="container container-detail">
                 <div className="row">
                     <div className="col-4">
@@ -197,9 +196,7 @@ const IPhoneDetail = () => {
                     </div>
                 </div>
             </div>
-            < Footer/>
         </>
     )
 }
-
 export default IPhoneDetail;

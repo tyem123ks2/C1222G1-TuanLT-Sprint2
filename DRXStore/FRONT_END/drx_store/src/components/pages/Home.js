@@ -5,8 +5,6 @@ import React from "react";
 const Home = () => {
     return (
         <>
-            <Header/>
-            <>
                 <div className="container-fluid">
                     <div
                         id="carouselExampleControlsNoTouching"
@@ -268,9 +266,6 @@ const Home = () => {
                         <a href="#">Xem thêm</a>
                     </div>
                 </div>
-            </>
-
-            <Footer/>
         </>
     )
 }

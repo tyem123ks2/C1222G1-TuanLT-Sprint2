@@ -1,4 +1,4 @@
-import "./iphone_list.css"
+import "./role_admin/iphone_list.css"
 import React, {useContext, useEffect, useState} from "react";
 import Header from "./common/header/Header";
 import Footer from "./common/footer/Footer";
@@ -52,7 +52,6 @@ const IPhoneList = () => {
 
     return (
         <>
-            <Header/>
             <div className="container-fluid">
                 <div
                     id="carouselExampleControlsNoTouching"
@@ -210,10 +209,18 @@ const IPhoneList = () => {
                                             </div>
                                             <div className="iphone-info">
                                                 <h4>{product.name}</h4>
-                                                <h4>{product.price.toLocaleString("vi-VN", {
+                                                {product.price && (
+                                                    <h4 style={{ textDecoration: 'line-through', color: "#515154" }}>
+                                                        {product.price.toLocaleString("vi-VN", {
+                                                            style: "currency",
+                                                            currency: "VND",
+                                                        })}
+                                                    </h4>
+                                                )}
+                                                <h5>{product.sellPrice.toLocaleString("vi-VN", {
                                                     style: "currency",
                                                     currency: "VND",
-                                                })}</h4>
+                                                })}</h5>
                                             </div>
                                             {/*<div className="btn">*/}
                                             {/*    <button type="button">Thêm vào giỏ</button>*/}
@@ -244,7 +251,6 @@ const IPhoneList = () => {
                     )}
                 </div>
             </div>
-            <Footer/>
         </>
     )
 }

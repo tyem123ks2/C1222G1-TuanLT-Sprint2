@@ -55,6 +55,13 @@ body {
     font-size: 18px;
     padding: 0 25px;
     margin-bottom: 10px;
+    color: black;
+}
+
+.container .card-iphone .iphone-info h5 {
+    font-size: 18px;
+    padding: 0 25px;
+    margin-bottom: 10px;
     color: red;
 }
 

@@ -1,14 +1,14 @@
 import Swal from "sweetalert2";
 import {useNavigate} from "react-router";
 import React, {useContext, useEffect, useState} from "react";
-import {ValueIconCartContext} from "./ValueIconCartContext";
-import {findCartByCustomerId, payment, updateCart, deleteCart, deleteCart1} from "../service/CartService";
+import {ValueIconCartContext} from "../ValueIconCartContext";
+import {findCartByCustomerId, payment, updateCart, deleteCart, deleteCart1} from "../../service/CartService";
 import {PayPalButtons, PayPalScriptProvider} from "@paypal/react-paypal-js";
-import {findCustomer} from "../service/CustomerService";
-import {payment1} from "../service/PaymentService";
+import {findCustomer} from "../../service/CustomerService";
+import {payment1} from "../../service/PaymentService";
 import {Link} from 'react-router-dom';
-import Header from "./common/header/Header";
-import Footer from "./common/footer/Footer";
+import Header from "../common/header/Header";
+import Footer from "../common/footer/Footer";
 import "./cart.css"
 
 const Cart = () => {
@@ -93,7 +93,7 @@ const Cart = () => {
     const handlePayment = async (totalPrice) => {
         try {
             await payment({totalPrice}, token);
-            navigate(`/order-detail/${totalPrice}`)
+            navigate(`/orderDetail/${totalPrice}`)
         } catch (e) {
             console.log(e);
         }
@@ -131,7 +131,6 @@ const Cart = () => {
     console.log(carts)
     return (
         <>
-            <Header/>
             <div className="container cart-margin">
                 <div className="container-fluid">
                     <div className="row" style={{display: "flex"}}>
@@ -227,13 +226,19 @@ const Cart = () => {
                         <div className="col-md-4 summary">
                             <div>
                                 <h5 className="h5-cart">
-                                    <b>Đơn hàng</b>
+                                    <b>Đơn hàng của bạn</b>
                                 </h5>
                             </div>
                             <hr className="hr-cart"/>
                             <form className="form-cart">
-                                <div className="col" style={{paddingLeft: 0}}>
-                                    Giao đến : {customer?.address}
+                                <div className="col py-1" style={{paddingLeft: 0}}>
+                                    Địa chỉ: {customer?.address}
+                                </div>
+                                <div className="col py-1" style={{paddingLeft: 0}}>
+                                    Số điện thoại: {customer?.phoneNumber}
+                                </div>
+                                <div className="col py-1" style={{paddingLeft: 0}}>
+                                    Email: {customer?.email}
                                 </div>
                             </form>
                             <div
@@ -275,7 +280,6 @@ const Cart = () => {
                     </div>
                 </div>
             </div>
-            <Footer/>
         </>
     )
 }
