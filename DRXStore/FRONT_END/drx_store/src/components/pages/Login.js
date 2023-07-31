@@ -15,8 +15,8 @@ import Modal from "react-bootstrap/Modal";
 import {useDispatch} from "react-redux";
 import "./Login.css"
 import {receiveAccount} from "../../redux/action";
-import Header from "../common/header/Header";
-import Footer from "../common/footer/Footer";
+import Header from "./header/Header";
+import Footer from "./footer/Footer";
 
 const Login = () => {
     const [failedAccount, setFailedAccount] = useState(null);

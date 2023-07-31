@@ -1,5 +1,5 @@
-import Header from "../common/header/Header";
-import Footer from "../common/footer/Footer";
+import Header from "./header/Header";
+import Footer from "./footer/Footer";
 import "./home.css"
 import React from "react";
 const Home = () => {
@@ -111,7 +111,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="text-center">
-                        <a href="#">Xem tất cả IPhone</a>
+                        <a href="/iphone">Xem tất cả IPhone</a>
                     </div>
                 </div>
                 <div className="container-fluid py-3">

@@ -1,5 +1,5 @@
-import Footer from "./common/footer/Footer";
-import Header from "./common/header/Header";
+import Footer from "./pages/footer/Footer";
+import Header from "./pages/header/Header";
 import React, {useContext, useEffect, useState} from "react";
 import {useParams} from "react-router";
 import {findAll, findIPhoneById} from "../service/IPhoneService";

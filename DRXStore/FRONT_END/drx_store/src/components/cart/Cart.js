@@ -2,13 +2,11 @@ import Swal from "sweetalert2";
 import {useNavigate} from "react-router";
 import React, {useContext, useEffect, useState} from "react";
 import {ValueIconCartContext} from "../ValueIconCartContext";
-import {findCartByCustomerId, payment, updateCart, deleteCart, deleteCart1} from "../../service/CartService";
+import {findCartByCustomerId, payment, updateCart, deleteCart1} from "../../service/CartService";
 import {PayPalButtons, PayPalScriptProvider} from "@paypal/react-paypal-js";
 import {findCustomer} from "../../service/CustomerService";
 import {payment1} from "../../service/PaymentService";
 import {Link} from 'react-router-dom';
-import Header from "../common/header/Header";
-import Footer from "../common/footer/Footer";
 import "./cart.css"
 
 const Cart = () => {
@@ -22,6 +20,7 @@ const Cart = () => {
         quantity: 1,
         iPhoneDetail: ""
     })
+
     const findAllCart = async () => {
         try {
             const result = await findCartByCustomerId(token);
@@ -32,6 +31,7 @@ const Cart = () => {
             console.log(e)
         }
     }
+
     const deleteCart = async (id) => {
         try {
             await deleteCart1(id, token);
@@ -46,11 +46,13 @@ const Cart = () => {
             console.log(e);
         }
     }
+
     useEffect(() => {
         {
             username ? findAllCart() : setIconQuantity(0)
         }
     }, []);
+
     useEffect(() => {
         {
             username ? (async () => {
@@ -59,9 +61,11 @@ const Cart = () => {
             })() : setCustomer(null)
         }
     }, []);
+
     const totalPrice = carts.reduce((total, cart) => {
         return total + cart?.iPhoneDetail?.sellPrice * cart?.quantity;
     }, 0);
+
     const decreaseQuantity = async (cartIndex) => {
         const updatedCarts = [...carts];
         if (updatedCarts[cartIndex].quantity > 1) {
@@ -90,6 +94,7 @@ const Cart = () => {
         }, token);
         findAllCart();
     };
+
     const handlePayment = async (totalPrice) => {
         try {
             await payment({totalPrice}, token);
@@ -98,6 +103,7 @@ const Cart = () => {
             console.log(e);
         }
     }
+
     const handleInputChange = async (event, cartIndex) => {
         const newQuantity = parseInt(event.target.value);
         try {
@@ -116,6 +122,7 @@ const Cart = () => {
             console.log(e);
         }
     };
+
     const handleOnclickPayment = async (totalPrice) => {
         const payment = {
             totalPrice: totalPrice
@@ -128,6 +135,7 @@ const Cart = () => {
             console.log(e);
         }
     }
+
     console.log(carts)
     return (
         <>
@@ -202,8 +210,8 @@ const Cart = () => {
                                                 <a onClick={() => deleteCart(cart?.idCart)}>
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        width={16}
-                                                        height={16}
+                                                        width={20}
+                                                        height={20}
                                                         fill="currentColor"
                                                         className="bi bi-trash3"
                                                         viewBox="0 0 16 16"

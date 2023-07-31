@@ -32,7 +32,7 @@ const InformationUser = () => {
                             <div className="profile-sidebar">
                                 <div className="profile-userpic">
                                     <img
-                                        style={{maxHeight: 325}}
+                                        style={{maxHeight: 250}}
                                         alt=""
                                         className="img-responsive mt-2"
                                         src={customer?.imgCustomer}

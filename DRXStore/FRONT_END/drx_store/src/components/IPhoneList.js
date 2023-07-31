@@ -1,7 +1,7 @@
 import "./role_admin/iphone_list.css"
 import React, {useContext, useEffect, useState} from "react";
-import Header from "./common/header/Header";
-import Footer from "./common/footer/Footer";
+import Header from "./pages/header/Header";
+import Footer from "./pages/footer/Footer";
 import {useNavigate} from "react-router";
 import {ValueIconCartContext} from "./ValueIconCartContext";
 import {Formik, Form, Field} from "formik";
@@ -49,6 +49,10 @@ const IPhoneList = () => {
         setSelectedOption(event.target.value);
     };
 
+    const handleProductLineSearch = async (productLine) => {
+        const result = await findAllIPhone(productLine, 0);
+        setProducts(result.data.content);
+    };
 
     return (
         <>
@@ -110,68 +114,89 @@ const IPhoneList = () => {
             <div className="container-fluid">
                 <div className="row">
                     <div className="row">
-                        <div className="row col-md-12 py-2 col-1">
-                            <Formik
-                                initialValues={{
-                                    name: "",
-                                }}
-                                onSubmit={(value) => {
-                                    const search = async () => {
-                                        const rs = await findAllIPhone(value.name, 0);
-                                        if (rs.data.content.length === 0) {
-                                            setShowMessage(true);
-                                        } else {
-                                            setShowMessage(false);
-                                            setProducts(rs.data.content);
-                                        }
-                                    };
-                                    search();
-                                }}
-                            >
-                                <Form className="justify-content-end">
-                                    <div
-                                        className="form-group justify-content-end"
-                                        style={{
-                                            paddingLeft: 80,
-                                        }}
+                        <div className="col-md-6">
+                            <ul className="list-inline">
+                                <li className="list-inline-item">
+                                    <button
+                                        type="button"
+                                        className="btn btn-outline-primary me-2"
+                                        onClick={() => handleProductLineSearch("")}
                                     >
-                                        <i className="ti-search ti-search1"/>
-                                        <Field
-                                            type="text"
-                                            className="form-control float-start me-3"
+                                        Tất cả
+                                    </button>
+                                </li>
+                                <li className="list-inline-item">
+                                    <button
+                                        type="button"
+                                        className="btn btn-outline-primary me-2"
+                                        onClick={() => handleProductLineSearch("iPhone 14")}
+                                    >
+                                        iPhone 14 series
+                                    </button>
+                                </li>
+                                <li className="list-inline-item">
+                                    <button
+                                        type="button"
+                                        className="btn btn-outline-primary me-2"
+                                        onClick={() => handleProductLineSearch("iPhone 13")}
+                                    >
+                                        iPhone 13 series
+                                    </button>
+                                </li>
+                                <li className="list-inline-item">
+                                    <button
+                                        type="button"
+                                        className="btn btn-outline-primary me-2"
+                                        onClick={() => handleProductLineSearch("iPhone 12")}
+                                    >
+                                        iPhone 12 series
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="col-md-6">
+                            <li className="list-inline-item">
+                                <Formik
+                                    initialValues={{
+                                        name: "",
+                                    }}
+                                    onSubmit={(value) => {
+                                        const search = async () => {
+                                            const rs = await findAllIPhone(value.name, 0);
+                                            if (rs.data.content.length === 0) {
+                                                setShowMessage(true);
+                                            } else {
+                                                setShowMessage(false);
+                                                setProducts(rs.data.content);
+                                            }
+                                        };
+                                        search();
+                                    }}
+                                >
+                                    <Form className="justify-content-end">
+                                        <div
+                                            className="form-group justify-content-end"
                                             style={{
-                                                width: "90%",
-                                                paddingLeft: 35,
-                                                height: "38px",
-                                            }}
-                                            name="name"
-                                            aria-describedby="helpId"
-                                            placeholder="Tìm theo tên..."
-                                        />
-                                        <button
-                                            className="btn btn-outline-success"
-                                            style={{
-                                                background: "red",
-                                                color: "white",
-                                                border: "none",
-                                                width: "50px",
+                                                paddingLeft: 80,
                                             }}
                                         >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="16"
-                                                height="16"
-                                                fill="currentColor"
-                                                className="bi bi-search"
-                                                viewBox="0 0 16 16"
-                                            >
-                                                <path
-                                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </Form>
-                            </Formik>
+                                            <i className="ti-search ti-search1"/>
+                                            <Field
+                                                type="text"
+                                                className="form-control float-start me-3"
+                                                style={{
+                                                    width: "200%",
+                                                    paddingLeft: 35,
+                                                    height: "38px",
+                                                }}
+                                                name="name"
+                                                aria-describedby="helpId"
+                                                placeholder="Tìm theo tên..."
+                                            />
+                                        </div>
+                                    </Form>
+                                </Formik>
+                            </li>
                         </div>
                     </div>
                     <div className="row">
@@ -210,7 +235,7 @@ const IPhoneList = () => {
                                             <div className="iphone-info">
                                                 <h4>{product.name}</h4>
                                                 {product.price && (
-                                                    <h4 style={{ textDecoration: 'line-through', color: "#515154" }}>
+                                                    <h4 style={{textDecoration: 'line-through', color: "#515154"}}>
                                                         {product.price.toLocaleString("vi-VN", {
                                                             style: "currency",
                                                             currency: "VND",

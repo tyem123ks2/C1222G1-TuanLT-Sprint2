@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import {findAllIPhone, findAllIPhoneAd} from "../../service/IPhoneService";
-import Header from "../common/header/Header";
+import Header from "../pages/header/Header";
 import NavLink from "react-bootstrap/NavLink";
 import {Formik, Form, Field} from "formik";
 import ReactPaginate from "react-paginate";
 import ToastContainer from "react-bootstrap/ToastContainer";
-import Footer from "../common/footer/Footer";
+import Footer from "../pages/footer/Footer";
 
 const PhoneListAdmin = () => {
     const [phoneList, setPhoneList] = useState([]);
