@@ -135,7 +135,6 @@ const Cart = () => {
             console.log(e);
         }
     }
-
     console.log(carts)
     return (
         <>

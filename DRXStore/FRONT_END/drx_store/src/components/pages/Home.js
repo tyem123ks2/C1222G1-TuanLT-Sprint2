@@ -1,8 +1,12 @@
-import Header from "./header/Header";
-import Footer from "./footer/Footer";
 import "./home.css"
 import React from "react";
+import {useNavigate} from "react-router";
 const Home = () => {
+    const navigate = useNavigate();
+    function handleClick1() {
+        return navigate(`/iphone`);
+    }
+
     return (
         <>
                 <div className="container-fluid">
@@ -84,30 +88,31 @@ const Home = () => {
                     <div className="item-list">
                         <div className="category-item">
                             <img
-                                src="https://cdn.tgdd.vn/Products/Images/42/153856/iphone-11-trang-200x200.jpg"
-                                alt="iPhone 11"
-                            />
-                            <h3>iPhone 11</h3>
-                            <p>The iPhone 11 with a dual-camera system.</p>
-                            <p>13.000.000 VNĐ</p>
-                        </div>
-                        <div className="category-item">
-                            <img
                                 src="https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-tim-1-600x600.jpg"
                                 alt="iPhone 12"
+                                onClick={() => handleClick1()}
                             />
-                            <h3>iPhone 12</h3>
-                            <p>The iPhone 12 with 5G capability.</p>
-                            <p>16.000.000 VNĐ</p>
+                            <h3>iPhone 12 series</h3>
+                            <p>The iPhone 11 with a dual-camera system.</p>
+                            <p>Giá chỉ từ 13.000.000 VNĐ</p>
                         </div>
                         <div className="category-item">
                             <img
                                 src="https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg"
                                 alt="iPhone 13"
                             />
-                            <h3>iPhone 13 Pro Max</h3>
+                            <h3>iPhone 13 series</h3>
+                            <p>The iPhone 12 with 5G capability.</p>
+                            <p>Giá chỉ từ 14.000.000 VNĐ</p>
+                        </div>
+                        <div className="category-item">
+                            <img
+                                src="https://shopdunk.com/images/thumbs/0009182_iphone-14-128gb_550.png"
+                                alt="iPhone 13"
+                            />
+                            <h3>iPhone 14 series</h3>
                             <p>The latest iPhone model with advanced features.</p>
-                            <p>23.000.000 VNĐ</p>
+                            <p>16.000.000 VNĐ</p>
                         </div>
                     </div>
                     <div className="text-center">

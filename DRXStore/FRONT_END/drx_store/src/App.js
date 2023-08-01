@@ -4,25 +4,23 @@ import {Route, Routes} from "react-router";
 import React from "react";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
-import ProductListUser from "./components/IPhoneList";
-import IPhoneList from "./components/IPhoneList";
-import IPhoneDetail from "./components/IPhoneDetail";
+import ProductListUser from "./components/IPhone_LIST/IPhoneList";
+import IPhoneList from "./components/IPhone_LIST/IPhoneList";
+import IPhoneDetail from "./components/IPhone_Detail/IPhoneDetail";
 import PhoneListAdmin from "./components/role_admin/PhoneListAdmin";
 import Error401 from "./components/Error401";
 import Cart from "./components/cart/Cart";
 import MainLayout from "./components/outlet/MainLayout";
-import Drx from "./components/Drx";
 import HistoryUser from "./components/history_customer/HistoryUser";
 import InformationUser from "./components/information_customer/InformationUser";
 import Register from "./components/register/Register";
-import PaymentSuccess from "./components/PaymentSuccess";
+import PaymentSuccess from "./components/payment_success/PaymentSuccess";
 
 function App() {
     return (
         <QuantityProvider>
             <Routes>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/af" element={<Drx/>}/>
                 <Route path="/" element={<MainLayout/>}>
                     <Route index element={<Home/>}/>
                     {/* PUBLIC_USER_LISt_IPHONE */}

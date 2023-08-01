@@ -1,21 +1,25 @@
 import React, {useContext} from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import {Link, useLocation} from "react-router-dom";
-import {FaSearch} from "react-icons/fa";
 import {Avatar} from "@mui/material";
 import {ValueIconCartContext} from "../../ValueIconCartContext";
 import "./header.css"
+import {useNavigate} from "react-router";
 
 const Header = () => {
     const username = localStorage.getItem("username");
     const account = JSON.parse(localStorage.getItem("account"));
     const {iconQuantity, setIconQuantity} = useContext(ValueIconCartContext)
     const roles = [];
+    const navigate = useNavigate();
+
     if (account != null) {
         for (let i = 0; i < account.roles.length; i++) {
             roles.push(account.roles[i].authority);
         }
     }
+
+
     const handleLogout = () => {
         localStorage.clear();
         window.location.href = "/";
@@ -24,12 +28,17 @@ const Header = () => {
         <div className="container-fluid">
             <div className="navbar-header">
                 <div className="logo">
-                    <img src="/DragonXX.png" height={65} width={110}/>
-                    <img
-                        src="kisspng-macbook-pro-macbook-air-apple-autorized-5b16c01d05e875.1632999215282176290242.png"
-                        height={32}
-                        width={100}
-                    />
+                    <Link to="/" className="" style={{color: "#d2d2d7"}}>
+                        <img src="/DragonXX.png" height={60} width={150}/>
+                    </Link>
+                    <Link to="/" className="" style={{color: "#d2d2d7"}}>
+                        <img
+                            src="kisspng-macbook-pro-macbook-air-apple-autorized-5b16c01d05e875.1632999215282176290242.png"
+                            height={32}
+                            width={100}
+                        />
+                    </Link>
+
                 </div>
                 <nav>
                     <ul>
@@ -121,7 +130,7 @@ const Header = () => {
                                                     to={"/history"}
                                                     className="text-dark text-decoration-none"
                                                 >
-                                                   Lịch sử mua hàng
+                                                    Lịch sử mua hàng
                                                 </Link>
                                             </Dropdown.Item>
                                         ) : (
@@ -139,7 +148,7 @@ const Header = () => {
                                         ) : (
                                             ""
                                         )}
-                                        {roles.includes("ADMIN")? (
+                                        {roles.includes("ADMIN") ? (
                                             <Dropdown.Divider/>
                                         ) : (
                                             ""
@@ -153,7 +162,8 @@ const Header = () => {
                                     </Dropdown.Menu>
                                 </Dropdown>
                             ) : (
-                                <Link to="/login" style={{color: "Yellow"}} className="nav-link px-2 login-btn text-decoration-none" nav-link
+                                <Link to="/login" style={{color: "Yellow"}}
+                                      className="nav-link px-2 login-btn text-decoration-none" nav-link
                                       link-dark px-2>
                                     Đăng nhập
                                 </Link>
@@ -161,8 +171,9 @@ const Header = () => {
                         </li>
                     </ul>
                 </nav>
-                <Link to="/cart">
-                    <img src="shopping-bag.png" height={32} width={32} alt="Shopping Bag"/>
+                <Link to={username ? "/cart" : "/login"} className="icon-buy" href="">
+                    <i className="fas fa-shopping-cart"/>
+                    <div className="number-buy">{iconQuantity}</div>
                 </Link>
             </div>
         </div>

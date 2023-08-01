@@ -37,7 +37,7 @@ const updateCart = async (cart, auth) => {
     } catch (e) {
         Swal.fire({
             title: 'Thông báo',
-            text: 'Sản phẩm trong kho đã hết!',
+            text: 'Số lượng sản phẩm đạt giới hạn!',
             icon: 'warning',
             confirmButtonText: 'OK'
         })

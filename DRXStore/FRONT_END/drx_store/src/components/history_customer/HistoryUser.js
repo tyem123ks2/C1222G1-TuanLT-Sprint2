@@ -10,6 +10,7 @@ const HistoryUser = () => {
     const username = localStorage.getItem("username");
     const [customer, setCustomer] = useState();
     const [orderDetails, setOrderDetails] = useState([])
+
     useEffect(() => {
         (async () => {
             const result = await historyShopping(token);
@@ -32,7 +33,7 @@ const HistoryUser = () => {
     };
     return (
         <>
-            <div className="container-fluid" style={{marginTop: 160}}>
+            <div className="container-fluid" style={{marginTop: 100}}>
                 <h1 className="text-center">Lịch sử đặt hàng</h1>
                 <table className="table table-striped">
                     <thead>

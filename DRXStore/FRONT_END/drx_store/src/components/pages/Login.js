@@ -61,188 +61,194 @@ const Login = () => {
         <>
             <Header/>
             <div className="d-flex justify-content-center">
-                <div className="login-container container d-flex justify-content-center align-items-center flex-column">
-                    <Formik
-                        initialValues={{
-                            username: "",
-                            password: "",
-                        }}
-                        validationSchema={Yup.object({
-                            username: Yup.string()
-                                .required("Tên đăng nhập bắt buộc phải nhập.")
-                                .test(
-                                    "Tên đăng nhập bắt buộc từ 6-30 ký tự.",
-                                    "Tên đăng nhập bắt buộc từ 6-30 ký tự.",
-                                    function (value) {
-                                        return value.length >= 6 && value.length <= 30;
-                                    }
-                                ),
-                            password: Yup.string()
-                                .required("Mật khẩu bắt buộc phải nhập.")
-                                .test(
-                                    "Mật khẩu bắt buộc từ 6-30 ký tự.",
-                                    "Mật khẩu bắt buộc từ 6-30 ký tự.",
-                                    function (value) {
-                                        return value.length >= 6 && value.length <= 30;
-                                    }
-                                ),
-                        })}
-                        onSubmit={(values) => {
-                            handleCallApiLogin(values)
-                                .then((e) => {
-                                    console.log(e);
-                                    setFailedAccount(null);
-                                    localStorage.setItem("token", e.token);
-                                    localStorage.setItem("username", e.username);
-                                    localStorage.setItem("account", JSON.stringify(e));
-                                    dispatch(receiveAccount(e));
-                                    window.location.href = "/";
-                                })
-                                .catch((e) => {
-                                    setFailedAccount("Tên đăng nhập hoặc mật khẩu không đúng.");
-                                });
-                        }}
-                    >
-                        <Form>
-                            <p className="title-login text-center mb-3">Đăng nhập vào DRX Store</p>
-                            <h6 className="text-center mb-3">Nếu chưa có tài khoản, vui lòng đăng kí tại đây</h6>
-                            <table>
-                                <tbody>
-                                <tr>
-                                    <td colSpan={2} className="modify-title"
-                                        Vui long đăng nhập để được nhận nhiều ưu đãi
-                                    />
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label htmlFor="username">Tên đăng nhập:</label>
-                                    </td>
-                                    <td>
-                                        <Field
-                                            type="text"
-                                            name="username"
-                                            id="username"
-                                            placeholder="Nhập tên đăng nhập"
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <td>
-                                        <ErrorMessage
-                                            name="username"
-                                            className="error-mess m-0"
-                                            component={"p"}
-                                        />
-                                        {failedAccount && (
-                                            <p className="error-mess m-0">{failedAccount}</p>
-                                        )}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label htmlFor="password">Mật khẩu:</label>
-                                    </td>
-                                    <td>
-                                        <Field
-                                            type="password"
-                                            autoComplete="on"
-                                            name="password"
-                                            id="password"
-                                            placeholder="Mật khẩu"
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <td>
-                                        <ErrorMessage
-                                            name="password"
-                                            className="error-mess m-0"
-                                            component={"p"}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td className="other-login">
-                                        <Link
-                                            to={"/confirm-email"}
-                                            className="float-end text-decoration-none"
-                                        >
-                                            Quên mật khẩu?
-                                        </Link>
-                                        <Link
-                                            to="/register"
-                                            className="float-end text-decoration-none"
-                                        >
-                                            Đăng kí
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <td className="other-login">
-                                        <button
-                                            type="submit"
-                                            className="login mt-3 w-100 text-center fw-bold"
-                                        >
-                                            ĐĂNG NHẬP
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <td>
-                                        <LoginSocialFacebook
-                                            appId="257872636750784"
-                                            onResolve={(resolve) => {
-                                                console.log(resolve.data);
-                                                setAccountFacebook({email: resolve.data.email});
-                                                handleShow();
-                                            }}
-                                            onReject={(reject) => console.log(reject)}
-                                        >
-                                            <FacebookLoginButton
-                                                className="login login-facebook w-100 text-center fw-bold d-flex justify-content-center mt-1"/>
-                                        </LoginSocialFacebook>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </Form>
-                    </Formik>
-                    <ToastContainer/>
-                    {accountFacebook && (
-                        <Modal show={show} onHide={handleClose}>
-                            <Modal.Header closeButton>
-                                <Modal.Title style={{fontSize: "14px!important"}}>
-                                    Xác nhận tạo tài khoản
-                                </Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                Chúng tôi sẽ tạo một tài khoản với tên đăng nhập là{" "}
-                                <span className="fw-bold">{accountFacebook.email}</span> và mật
-                                khẩu sẽ được gửi qua email của bạn. Vui lòng xác nhận để tiếp
-                                tục đăng nhập.
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>
-                                    Đóng
-                                </Button>
-                                <Button
-                                    variant="warning"
-                                    onClick={() => {
-                                        handleClose();
-                                        handleCreateAccountByFacebook();
-                                    }}
-                                >
-                                    Xác nhận
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
-                    )}
+                <div className="col-md-6">
+                    <img src="https://shopdunk.com/images/uploaded/banner/VNU_M492_08%201.jpeg"/>
                 </div>
+                <div className="col-md-6">
+                    <div className="login-container container d-flex justify-content-center align-items-center flex-column py-5">
+                        <Formik
+                            initialValues={{
+                                username: "",
+                                password: "",
+                            }}
+                            validationSchema={Yup.object({
+                                username: Yup.string()
+                                    .required("Tên đăng nhập bắt buộc phải nhập.")
+                                    .test(
+                                        "Tên đăng nhập bắt buộc từ 6-30 ký tự.",
+                                        "Tên đăng nhập bắt buộc từ 6-30 ký tự.",
+                                        function (value) {
+                                            return value.length >= 6 && value.length <= 30;
+                                        }
+                                    ),
+                                password: Yup.string()
+                                    .required("Mật khẩu bắt buộc phải nhập.")
+                                    .test(
+                                        "Mật khẩu bắt buộc từ 6-30 ký tự.",
+                                        "Mật khẩu bắt buộc từ 6-30 ký tự.",
+                                        function (value) {
+                                            return value.length >= 6 && value.length <= 30;
+                                        }
+                                    ),
+                            })}
+                            onSubmit={(values) => {
+                                handleCallApiLogin(values)
+                                    .then((e) => {
+                                        console.log(e);
+                                        setFailedAccount(null);
+                                        localStorage.setItem("token", e.token);
+                                        localStorage.setItem("username", e.username);
+                                        localStorage.setItem("account", JSON.stringify(e));
+                                        dispatch(receiveAccount(e));
+                                        window.location.href = "/";
+                                    })
+                                    .catch((e) => {
+                                        setFailedAccount("Tên đăng nhập hoặc mật khẩu không đúng.");
+                                    });
+                            }}
+                        >
+                            <Form>
+                                <p className="title-login text-center mb-3">Đăng nhập vào DRX Store</p>
+                                <h6 className="text-center mb-3">Nếu chưa có tài khoản, vui lòng đăng kí tại đây</h6>
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td colSpan={2} className="modify-title"
+                                            Vui long đăng nhập để được nhận nhiều ưu đãi
+                                        />
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label htmlFor="username">Tên đăng nhập:</label>
+                                        </td>
+                                        <td>
+                                            <Field
+                                                type="text"
+                                                name="username"
+                                                id="username"
+                                                placeholder="Nhập tên đăng nhập"
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td>
+                                            <ErrorMessage
+                                                name="username"
+                                                className="error-mess m-0"
+                                                component={"p"}
+                                            />
+                                            {failedAccount && (
+                                                <p className="error-mess m-0">{failedAccount}</p>
+                                            )}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label htmlFor="password">Mật khẩu:</label>
+                                        </td>
+                                        <td>
+                                            <Field
+                                                type="password"
+                                                autoComplete="on"
+                                                name="password"
+                                                id="password"
+                                                placeholder="Mật khẩu"
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td>
+                                            <ErrorMessage
+                                                name="password"
+                                                className="error-mess m-0"
+                                                component={"p"}
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td className="other-login">
+                                            <Link
+                                                to={"/confirm-email"}
+                                                className="float-end text-decoration-none"
+                                            >
+                                                Quên mật khẩu?
+                                            </Link>
+                                            <Link
+                                                to="/register"
+                                                className="float-end text-decoration-none"
+                                            >
+                                                Đăng kí
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td className="other-login">
+                                            <button
+                                                type="submit"
+                                                className="login mt-3 w-100 text-center fw-bold"
+                                            >
+                                                ĐĂNG NHẬP
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td>
+                                            <LoginSocialFacebook
+                                                appId="257872636750784"
+                                                onResolve={(resolve) => {
+                                                    console.log(resolve.data);
+                                                    setAccountFacebook({email: resolve.data.email});
+                                                    handleShow();
+                                                }}
+                                                onReject={(reject) => console.log(reject)}
+                                            >
+                                                <FacebookLoginButton
+                                                    className="login login-facebook w-100 text-center fw-bold d-flex justify-content-center mt-1"/>
+                                            </LoginSocialFacebook>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </Form>
+                        </Formik>
+                        <ToastContainer/>
+                        {accountFacebook && (
+                            <Modal show={show} onHide={handleClose}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title style={{fontSize: "14px!important"}}>
+                                        Xác nhận tạo tài khoản
+                                    </Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    Chúng tôi sẽ tạo một tài khoản với tên đăng nhập là{" "}
+                                    <span className="fw-bold">{accountFacebook.email}</span> và mật
+                                    khẩu sẽ được gửi qua email của bạn. Vui lòng xác nhận để tiếp
+                                    tục đăng nhập.
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleClose}>
+                                        Đóng
+                                    </Button>
+                                    <Button
+                                        variant="warning"
+                                        onClick={() => {
+                                            handleClose();
+                                            handleCreateAccountByFacebook();
+                                        }}
+                                    >
+                                        Xác nhận
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
+                        )}
+                    </div>
+                </div>
+
             </div>
             <Footer />
         </>

@@ -10,6 +10,24 @@ const findCustomer = async (auth) => {
     }
 }
 
+export const findCustomerById = async (id, auth) => {
+    const headers = { Authorization: "Bearer " + auth };
+    return (
+        await axios.get(`http://localhost:8080/api/user/customer/${id}`, {
+            headers,
+        })
+    ).data;
+};
+
+export const updateCustomer = async (customer, auth) => {
+    const headers = { Authorization: "Bearer " + auth };
+    return await axios.put(
+        `http://localhost:8080/api/user/customer/update/${customer.id}`,
+        { ...customer },
+        { headers }
+    );
+};
+
 const saveCustomer = async (customer) => {
     try {
         await axios.post(`http://localhost:8080/api/public/customer/create`, {
