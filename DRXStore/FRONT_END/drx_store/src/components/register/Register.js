@@ -11,6 +11,8 @@ import {
     saveCustomer
 } from "../../service/CustomerService";
 import {toast} from "react-toastify";
+import "./register.css"
+
 
 const Register = () => {
     const [selectedFile, setSelectedFile] = useState(null);

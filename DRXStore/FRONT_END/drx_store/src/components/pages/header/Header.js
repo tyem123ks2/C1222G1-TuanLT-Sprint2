@@ -4,6 +4,7 @@ import {Link, useLocation} from "react-router-dom";
 import {Avatar} from "@mui/material";
 import {ValueIconCartContext} from "../../ValueIconCartContext";
 import "./header.css"
+import "../../cart/slide.css"
 import {useNavigate} from "react-router";
 
 const Header = () => {
@@ -169,12 +170,15 @@ const Header = () => {
                                 </Link>
                             )}
                         </li>
+                        <li>
+                            <Link to={username ? "/cart" : "/login"} className="icon-buy" href="">
+                                <i className="fas fa-shopping-cart" style={{color: "#f5c20a"}}/>
+                                <div className="number-buy">{iconQuantity}</div>
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
-                <Link to={username ? "/cart" : "/login"} className="icon-buy" href="">
-                    <i className="fas fa-shopping-cart"/>
-                    <div className="number-buy">{iconQuantity}</div>
-                </Link>
+
             </div>
         </div>
 

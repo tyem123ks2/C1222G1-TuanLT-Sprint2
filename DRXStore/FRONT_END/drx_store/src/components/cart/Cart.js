@@ -258,7 +258,7 @@ const Cart = () => {
                                 })}</div>
                             </div>
                             <PayPalScriptProvider
-                                options={{"client-id": 'AXU13CYPCv4Cm99RH4gVvsOJri1VgivtuCwLlZMNQAogPWUmMYe6nip5UzSDRiRsK_jIhs7Q-V3JAZB8'}}
+                                options={{"client-id": 'AQoI1Uhq9raxexlo6aAHAjHn3scsFW1N5qsj5qugiR5bdkJmAKhpRg3dSGm04OWp1LZinIrJ_J94jW8x'}}
                             >
                                 <PayPalButtons
                                     createOrder={(data, actions) => {

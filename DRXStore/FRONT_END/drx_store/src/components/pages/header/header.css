@@ -37,6 +37,26 @@ nav ul li {
     margin-right: 30px;
 }
 
+.nav li .icon-buy {
+    position: relative;
+}
+
+.nav li .icon-buy i {
+    color: #f5c20a;
+    font-size: 24px; /* Adjust the font size as needed */
+}
+
+.nav li .icon-buy .number-buy {
+    position: absolute;
+    bottom: -5px; /* Adjust this value to control the vertical position */
+    right: -5px; /* Adjust this value to control the horizontal position */
+    background-color: #f5c20a;
+    color: #fff;
+    font-size: 12px; /* Adjust the font size as needed */
+    padding: 2px 5px; /* Add padding to the number */
+    border-radius: 50%; /* Make the number a circle */
+}
+
 nav ul li a {
     font-size: 18px;
     display: block;

@@ -10,17 +10,31 @@ const Footer = () => {
                             <ul className="nav flex-column">
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-
                                     </a>
                                 </li>
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        Track Order
+                                      Momo
                                     </a>
                                 </li>
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        Size Chart
+                                        PayPal
+                                    </a>
+                                </li>
+                                <li className="nav-item mb-2">
+                                    <a href="#" className="nav-link p-0 text-muted">
+                                        VNPay
+                                    </a>
+                                </li>
+                                <li className="nav-item mb-2">
+                                    <a href="#" className="nav-link p-0 text-muted">
+                                        Chuyển khoản ngân hàng
+                                    </a>
+                                </li>
+                                <li className="nav-item mb-2">
+                                    <a href="#" className="nav-link p-0 text-muted">
+                                        Quét QRPay
                                     </a>
                                 </li>
                             </ul>
@@ -30,17 +44,17 @@ const Footer = () => {
                             <ul className="nav flex-column">
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        Safe Shopping
+                                        Tin tức
                                     </a>
                                 </li>
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        Delivery &amp; Shipping
+                                        Delivery &amp; Giới thiệu
                                     </a>
                                 </li>
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        90-Day Returns
+                                        Giao hàng
                                     </a>
                                 </li>
                             </ul>
@@ -50,25 +64,25 @@ const Footer = () => {
                             <ul className="nav flex-column">
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        My Account
+                                        Facebook
                                     </a>
                                 </li>
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        About Us
+                                        Instagram
                                     </a>
                                 </li>
                                 <li className="nav-item mb-2">
                                     <a href="#" className="nav-link p-0 text-muted">
-                                        Affiliate Program
+                                        TikTok
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div className="col-4 offset-1">
                             <form>
-                                <h5>Subscribe to our newsletter</h5>
-                                <p>Stay updated on sales, new items and more</p>
+                                <h5>Theo dõi DRX-Store để nhận được nhiều ưu đãi mới nhất từ cửa hàng!</h5>
+                                <p>Địa chỉ Email của bạn:</p>
                                 <div className="d-flex w-100 gap-2">
                                     <label htmlFor="newsletter1" className="visually-hidden">
                                         Email address
@@ -77,7 +91,7 @@ const Footer = () => {
                                         id="newsletter1"
                                         type="text"
                                         className="form-control"
-                                        placeholder="Email address"
+                                        placeholder="Nhập email tại đây..."
                                     />
                                     <button className="btn btn-primary" type="button">
                                         Subscribe
